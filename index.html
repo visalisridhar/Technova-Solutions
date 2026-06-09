@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechNova Solutions — Grow Smarter with AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ----- Landing-specific ----- */
+  .hero{ position:relative; overflow:hidden; padding:64px 0 96px; }
+  .hero-bg{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+  .hero-bg .blob{ opacity:.55; }
+  .hero .container{ position:relative; z-index:1; }
+  .hero-grid{ display:grid; grid-template-columns:1.02fr .98fr; gap:54px; align-items:center; }
+  .hero h1{ margin:22px 0 0; }
+  .hero .lead{ max-width:520px; margin-top:22px; }
+  .hero-cta{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .trust{ display:flex; align-items:center; gap:16px; margin-top:30px; }
+  .avatars{ display:flex; }
+  .avatars span{ width:40px; height:40px; border-radius:50%; border:2.5px solid var(--bg); margin-left:-12px; background-size:cover; background-position:center; box-shadow:var(--sh-sm); }
+  .avatars span:first-child{ margin-left:0; }
+  .trust .t-txt{ font-size:14px; color:var(--body); }
+  .trust .t-txt b{ color:var(--ink); font-family:var(--font-head); }
+  .stars{ color:#FFB020; letter-spacing:2px; font-size:13px; }
+
+  /* App mockup */
+  .mock-wrap{ position:relative; }
+  .mock{
+    background:#fff; border:1px solid var(--border); border-radius:24px;
+    box-shadow:var(--sh-lg); overflow:hidden; transform:rotate(.4deg);
+  }
+  .mock-top{ display:flex; align-items:center; gap:7px; padding:15px 18px; border-bottom:1px solid var(--border); background:#fbfaff; }
+  .mock-top i{ width:11px; height:11px; border-radius:50%; background:#E2DDF2; display:inline-block; }
+  .mock-top i:nth-child(1){ background:#FF7A59; } .mock-top i:nth-child(2){ background:#FFB020; } .mock-top i:nth-child(3){ background:#19C37D; }
+  .mock-top .url{ margin-left:12px; font-size:12px; color:var(--muted); font-family:var(--font-head); }
+  .mock-body{ padding:22px; }
+  .mock-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .mock-row h4{ font-size:16px; }
+  .mock-row .pill{ font-size:11px; padding:5px 11px; }
+  .mini-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+  .mini{ background:var(--lilac); border-radius:14px; padding:13px 14px; }
+  .mini .v{ font-family:var(--font-head); font-weight:700; font-size:21px; color:var(--ink); }
+  .mini .k{ font-size:11px; color:var(--muted); margin-top:2px; }
+  .mini.alt{ background:#16112E; } .mini.alt .v{ color:#fff; } .mini.alt .k{ color:rgba(255,255,255,.6); }
+  .chart{ height:128px; border-radius:14px; background:linear-gradient(180deg,#F7F4FF,#fff); border:1px solid var(--border); padding:14px; display:flex; align-items:flex-end; gap:9px; }
+  .bar{ flex:1; border-radius:6px 6px 3px 3px; background:var(--lilac-2); }
+  .bar.hi{ background:var(--grad); }
+  .float{ position:absolute; background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--sh-md); padding:13px 16px; display:flex; align-items:center; gap:11px; }
+  .float .ic{ width:38px; height:38px; border-radius:11px; display:grid; place-items:center; flex:none; }
+  .float .ic svg{ width:19px; height:19px; }
+  .float .v{ font-family:var(--font-head); font-weight:700; font-size:17px; color:var(--ink); line-height:1; }
+  .float .k{ font-size:11.5px; color:var(--muted); margin-top:3px; }
+  .float-a{ top:-22px; right:-14px; animation:floaty 5s ease-in-out infinite; }
+  .float-b{ bottom:24px; left:-34px; animation:floaty 6s ease-in-out infinite .8s; }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+  @media (prefers-reduced-motion:reduce){ .float{ animation:none !important; } }
+
+  /* Logos */
+  .logos{ display:flex; align-items:center; justify-content:center; gap:48px; flex-wrap:wrap; opacity:.85; }
+  .logos span{ font-family:var(--font-head); font-weight:700; font-size:21px; color:var(--muted); letter-spacing:-.02em; display:flex; align-items:center; gap:9px; }
+  .logos svg{ width:22px; height:22px; }
+
+  @media (max-width:980px){
+    .hero-grid{ grid-template-columns:1fr; gap:60px; }
+    .float-b{ left:0; }
+    .logos{ gap:30px; }
+  }
+
+  /* Steps */
+  .step-num{ font-family:var(--font-head); font-weight:800; font-size:15px; color:var(--primary); width:42px; height:42px; border-radius:50%; border:1.5px solid var(--lilac-2); display:grid; place-items:center; margin-bottom:20px; }
+
+  /* Showcase */
+  .show-card{ overflow:hidden; padding:0; }
+  .show-card img{ width:100%; height:210px; object-fit:cover; }
+  .show-card .body{ padding:26px 28px 30px; }
+  .show-card .body p{ color:var(--body); font-size:15px; margin-top:8px; }
+  .tag-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+
+  /* Testimonial */
+  .quote{ background:var(--grad); border-radius:var(--r-xl); padding:64px 56px; color:#fff; position:relative; overflow:hidden; text-align:center; }
+  .quote::before{ content:"“"; position:absolute; top:-10px; left:36px; font-family:var(--font-head); font-size:180px; opacity:.18; }
+  .quote::after{ content:""; position:absolute; inset:0; background:radial-gradient(700px 240px at 20% 120%, rgba(255,255,255,.18), transparent 60%); }
+  .quote .q{ position:relative; z-index:1; font-family:var(--font-head); font-weight:600; font-size:clamp(22px,2.6vw,32px); line-height:1.4; max-width:880px; margin:0 auto; letter-spacing:-.02em; }
+  .quote .who{ position:relative; z-index:1; margin-top:28px; font-size:15px; opacity:.9; }
+  .quote .who b{ display:block; font-family:var(--font-head); font-size:17px; opacity:1; }
+
+  /* CTA */
+  .cta{ position:relative; overflow:hidden; background:var(--ink); border-radius:var(--r-xl); padding:72px 56px; text-align:center; }
+  .cta::after{ content:""; position:absolute; inset:0; background:radial-gradient(700px 300px at 50% -40%, rgba(108,77,255,.55), transparent 65%); }
+  .cta h2{ position:relative; z-index:1; color:#fff; font-size:clamp(30px,3.6vw,46px); }
+  .cta p{ position:relative; z-index:1; color:rgba(255,255,255,.72); max-width:540px; margin:18px auto 0; }
+  .cta .hero-cta{ position:relative; z-index:1; justify-content:center; }
+
+  /* Chat */
+  .chat-btn{ position:fixed; bottom:24px; right:24px; z-index:60; background:var(--grad); color:#fff; border:none; padding:15px 22px; border-radius:999px; cursor:pointer; font-family:var(--font-head); font-weight:600; font-size:15px; display:flex; align-items:center; gap:9px; box-shadow:0 16px 34px -12px rgba(108,77,255,.7); transition:transform .2s; }
+  .chat-btn:hover{ transform:translateY(-3px); }
+  .chatbox{ position:fixed; bottom:88px; right:24px; z-index:60; width:330px; background:#fff; border:1px solid var(--border); border-radius:22px; box-shadow:var(--sh-lg); overflow:hidden; display:none; }
+  .chat-head{ background:var(--grad); color:#fff; padding:18px 20px; }
+  .chat-head b{ font-family:var(--font-head); font-size:16px; }
+  .chat-head span{ display:block; font-size:12.5px; opacity:.85; margin-top:2px; }
+  .chat-body{ padding:18px 20px; max-height:230px; overflow:auto; }
+  .msg{ font-size:14px; padding:10px 14px; border-radius:14px; margin-bottom:10px; max-width:85%; }
+  .msg.bot{ background:var(--lilac); color:var(--ink-2); border-bottom-left-radius:4px; }
+  .msg.user{ background:var(--primary); color:#fff; margin-left:auto; border-bottom-right-radius:4px; }
+  .chat-in{ display:flex; gap:8px; padding:14px 16px; border-top:1px solid var(--border); }
+  .chat-in input{ flex:1; border:1.5px solid var(--border-2); border-radius:12px; padding:11px 13px; font-family:var(--font-body); font-size:14px; outline:none; }
+  .chat-in input:focus{ border-color:var(--primary); }
+  .chat-in button{ background:var(--primary); color:#fff; border:none; border-radius:12px; padding:0 16px; cursor:pointer; font-weight:600; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" fill="currentColor" opacity=".25"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      TechNova
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+  </div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow" id="heroBadge">AI-Powered Digital Studio</span>
+      <h1 class="h-hero">Grow your business <span class="text-grad">smarter</span>, not harder.</h1>
+      <p class="lead" id="heroLead">TechNova builds AI solutions, web &amp; mobile apps, and automation that turn ambitious ideas into measurable results — all from one focused team.</p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn btn-primary">Start a project
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="services.html" class="btn btn-ghost">Explore services</a>
+      </div>
+      <div class="trust">
+        <div class="avatars">
+          <span style="background-image:url('assets/images/team.jpg')"></span>
+          <span style="background-image:url('assets/images/project.jpg')"></span>
+          <span style="background-image:url('assets/images/office.jpg')"></span>
+          <span style="background:var(--grad);display:grid;place-items:center;color:#fff;font-family:var(--font-head);font-weight:700;font-size:12px">+9</span>
+        </div>
+        <div class="t-txt"><span class="stars">★★★★★</span><br><b>100+</b> happy clients building with us</div>
+      </div>
+    </div>
+
+    <div class="mock-wrap">
+      <div class="mock">
+        <div class="mock-top"><i></i><i></i><i></i><span class="url">app.technova.io/dashboard</span></div>
+        <div class="mock-body">
+          <div class="mock-row"><h4>Campaign Overview</h4><span class="pill">● Live</span></div>
+          <div class="mini-stats">
+            <div class="mini"><div class="v">+128%</div><div class="k">Conversion</div></div>
+            <div class="mini alt"><div class="v">24.8k</div><div class="k">New users</div></div>
+            <div class="mini"><div class="v">98%</div><div class="k">Uptime</div></div>
+          </div>
+          <div class="chart">
+            <span class="bar" style="height:42%"></span>
+            <span class="bar" style="height:58%"></span>
+            <span class="bar" style="height:38%"></span>
+            <span class="bar hi" style="height:74%"></span>
+            <span class="bar" style="height:52%"></span>
+            <span class="bar hi" style="height:90%"></span>
+            <span class="bar" style="height:64%"></span>
+            <span class="bar" style="height:48%"></span>
+          </div>
+        </div>
+      </div>
+      <div class="float float-a">
+        <span class="ic" style="background:#E4F8F0;color:#19C37D"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><div class="v">+38%</div><div class="k">Revenue growth</div></div>
+      </div>
+      <div class="float float-b">
+        <span class="ic" style="background:#EEE9FF;color:#6C4DFF"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" fill="currentColor"/></svg></span>
+        <div><div class="v">Automated</div><div class="k">12 workflows live</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGOS ===== -->
+<section class="section-sm">
+  <div class="container">
+    <p class="center" style="color:var(--muted);font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:30px">Trusted technology partners</p>
+    <div class="logos">
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8.5v8.5H3V3Zm9.5 0H21v8.5h-8.5V3ZM3 12.5h8.5V21H3v-8.5Zm9.5 0H21V21h-8.5v-8.5Z"/></svg>Microsoft</span>
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/></svg>Google Cloud</span>
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 16c5 3 11 3 16 0M6 9l-2 4 4 1M18 9l2 4-4 1"/><path d="M7 8h10v4H7z"/></svg>AWS</span>
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="5"/></svg>Stripe</span>
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 16H3l9-16Z"/></svg>Vercel</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">What we do</span>
+      <h2 class="h-sec">Everything you need to build &amp; scale</h2>
+      <p class="lead">From first prototype to production at scale, our team ships the digital products that move your business forward.</p>
+    </div>
+    <div class="grid grid-3 mt-l">
+      <div class="card tint-1 reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>AI Solutions</h3>
+        <p>Custom models, intelligent assistants and automation that put your data to work and cut busywork.</p>
+      </div>
+      <div class="card tint-4 reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3 8h18M7 21h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Web Development</h3>
+        <p>Fast, responsive websites and web apps engineered for conversion, performance and easy growth.</p>
+      </div>
+      <div class="card tint-3 reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Mobile Apps</h3>
+        <p>Native-quality Android &amp; iOS apps with delightful UX, built to ship quickly and update often.</p>
+      </div>
+      <div class="card tint-5 reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>Business Automation</h3>
+        <p>Automate repetitive operations end-to-end so your team can focus on the work that really matters.</p>
+      </div>
+      <div class="card tint-6 reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7c0-1.1 3.6-2 8-2s8 .9 8 2-3.6 2-8 2-8-.9-8-2Z" stroke="currentColor" stroke-width="2"/><path d="M4 7v10c0 1.1 3.6 2 8 2s8-.9 8-2V7M4 12c0 1.1 3.6 2 8 2s8-.9 8-2" stroke="currentColor" stroke-width="2"/></svg></div>
+        <h3>Cloud &amp; DevOps</h3>
+        <p>Secure, scalable cloud infrastructure with CI/CD pipelines that keep you shipping with confidence.</p>
+      </div>
+      <div class="card tint-2 reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Cybersecurity</h3>
+        <p>Audits, monitoring and hardening that protect your products and your customers around the clock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section" style="background:var(--lilac)">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">How we work</span>
+        <h2 class="h-sec mt-s">A simple path from idea to impact</h2>
+        <p class="lead mt-s">No bloated process — just a focused, transparent way of working that gets your product live and improving fast.</p>
+        <div class="grid" style="margin-top:34px;gap:18px">
+          <div class="card" style="display:flex;gap:20px;align-items:flex-start;padding:24px 26px">
+            <div class="step-num">01</div>
+            <div><h3 style="font-size:19px">Discover &amp; strategise</h3><p style="color:var(--body);font-size:15px;margin-top:6px">We learn your goals, users and constraints, then map the fastest route to value.</p></div>
+          </div>
+          <div class="card" style="display:flex;gap:20px;align-items:flex-start;padding:24px 26px">
+            <div class="step-num">02</div>
+            <div><h3 style="font-size:19px">Design &amp; build</h3><p style="color:var(--body);font-size:15px;margin-top:6px">Our team designs, engineers and tests in short cycles you can see every week.</p></div>
+          </div>
+          <div class="card" style="display:flex;gap:20px;align-items:flex-start;padding:24px 26px">
+            <div class="step-num">03</div>
+            <div><h3 style="font-size:19px">Launch &amp; scale</h3><p style="color:var(--body);font-size:15px;margin-top:6px">We ship to production, measure results and keep improving alongside your growth.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="position:relative">
+        <img src="assets/images/team.jpg" alt="TechNova team collaborating" style="width:100%;border-radius:var(--r-lg);box-shadow:var(--sh-lg);object-fit:cover;aspect-ratio:4/3">
+        <div class="float" style="position:absolute;bottom:-22px;left:-22px">
+          <span class="ic" style="background:#EEE9FF;color:#6C4DFF"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg></span>
+          <div><div class="v">On time</div><div class="k">98% on-schedule delivery</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="statband">
+      <div class="grid grid-4">
+        <div class="stat center"><div class="n">250<span class="text-accent">+</span></div><div class="l">Projects delivered</div></div>
+        <div class="stat center"><div class="n">100<span class="text-accent">+</span></div><div class="l">Happy clients</div></div>
+        <div class="stat center"><div class="n">12<span class="text-accent">+</span></div><div class="l">Years of experience</div></div>
+        <div class="stat center"><div class="n">98<span class="text-accent">%</span></div><div class="l">Client satisfaction</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHOWCASE ===== -->
+<section class="section" style="padding-top:24px">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2 class="h-sec">Products we're proud to have shipped</h2>
+    </div>
+    <div class="grid grid-3 mt-l">
+      <div class="card show-card reveal">
+        <img src="assets/images/project.jpg" alt="Hospital Management System">
+        <div class="body">
+          <h3>Hospital Management System</h3>
+          <p>End-to-end platform managing patients, staff and operations for a multi-branch hospital.</p>
+          <div class="tag-row"><span class="pill">Web App</span><span class="pill">AI</span></div>
+        </div>
+      </div>
+      <div class="card show-card reveal">
+        <img src="assets/images/office.jpg" alt="School ERP Platform">
+        <div class="body">
+          <h3>School ERP Platform</h3>
+          <p>A unified student, staff and finance system serving thousands of users every day.</p>
+          <div class="tag-row"><span class="pill">SaaS</span><span class="pill">Cloud</span></div>
+        </div>
+      </div>
+      <div class="card show-card reveal">
+        <img src="assets/images/team.jpg" alt="E-Commerce Solution">
+        <div class="body">
+          <h3>E-Commerce Solution</h3>
+          <p>A high-converting online store with smart recommendations and automated fulfilment.</p>
+          <div class="tag-row"><span class="pill">Mobile</span><span class="pill">Payments</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="center" style="margin-top:40px"><a href="projects.html" class="btn btn-ghost">View all projects
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIAL ===== -->
+<section class="section" style="padding-top:24px">
+  <div class="container">
+    <div class="quote reveal">
+      <p class="q">"TechNova didn't just build our app — they reshaped how we operate. Automation alone gave our team back two days a week, and the dashboard pays for itself."</p>
+      <div class="who"><b>Ananya Rao</b>Head of Operations, Meridian Health</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta">
+      <h2>Ready to build something great?</h2>
+      <p>Tell us about your idea and we'll get back within one business day with a clear, honest plan.</p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn btn-white">Get started free</a>
+        <a href="about.html" class="btn btn-light">Learn about us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" fill="currentColor" opacity=".25"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>TechNova</a>
+        <p class="blurb">Building smart digital solutions for ambitious businesses. AI, web, mobile and automation under one roof.</p>
+        <div class="foot-social" style="margin-top:22px">
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.8.4-1.6.6-2.5.7.9-.5 1.6-1.4 1.9-2.4-.8.5-1.8.9-2.7 1.1A4.2 4.2 0 0 0 11.5 9c0 .3 0 .6.1.9C8 9.7 5 8 3 5.4c-.4.6-.6 1.4-.6 2.2 0 1.5.7 2.8 1.9 3.5-.7 0-1.4-.2-1.9-.5v.1c0 2 1.5 3.7 3.4 4.1-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1.6 1.7 2.1 2.9 4 2.9A8.5 8.5 0 0 1 2 19.5 12 12 0 0 0 8.3 21c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2.1-2.1Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5v9H4v-9h2.5ZM5.2 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM20 17.5h-2.5v-4.7c0-1.2-.4-2-1.5-2-.8 0-1.3.6-1.5 1.1-.1.2-.1.5-.1.7v4.9H11.9s.1-8.1 0-9h2.5v1.3c.3-.5 1-1.3 2.4-1.3 1.7 0 3.2 1.2 3.2 3.7v5.3Z"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.5 4.9.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">AI Solutions</a>
+        <a href="services.html">Web Development</a>
+        <a href="services.html">Mobile Apps</a>
+        <a href="services.html">Automation</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:info@technova.com">info@technova.com</a>
+        <a href="tel:+919876543210">+91 98765 43210</a>
+        <a href="contact.html">Chennai, Tamil Nadu</a>
+        <a href="contact.html">Get a quote</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 TechNova Solutions. All rights reserved.</span>
+      <span>Building smart digital solutions for businesses.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== CHAT ===== -->
+<button class="chat-btn" onclick="toggleChat()">
+  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M21 11.5a8.4 8.4 0 0 1-12 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+  Chat with us
+</button>
+<div class="chatbox" id="chatbox">
+  <div class="chat-head"><b>TechNova Assistant</b><span>Typically replies in a few minutes</span></div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi there! 👋 Ask me about our services, projects, contact details or location.</div>
+  </div>
+  <div class="chat-in">
+    <input id="userInput" type="text" placeholder="Type your message…" onkeydown="if(event.key==='Enter')sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  function toggleChat(){ var c=document.getElementById('chatbox'); c.style.display = c.style.display==='block'?'none':'block'; }
+  function addMsg(t,cls){ var b=document.getElementById('chatBody'); var d=document.createElement('div'); d.className='msg '+cls; d.textContent=t; b.appendChild(d); b.scrollTop=b.scrollHeight; }
+  function sendMessage(){
+    var i=document.getElementById('userInput'); var msg=i.value.trim(); if(!msg)return;
+    addMsg(msg,'user'); i.value='';
+    var m=msg.toLowerCase(), r;
+    if(m.includes('hello')||m.includes('hi')) r="Hello! Welcome to TechNova Solutions. How can I help you today?";
+    else if(m.includes('service')) r="We offer AI Solutions, Web & Mobile Development, Business Automation, Cloud & DevOps and Cybersecurity.";
+    else if(m.includes('about')) r="TechNova helps businesses grow through modern technology and digital transformation.";
+    else if(m.includes('project')) r="We've shipped Hospital Management Systems, School ERP Platforms and E-Commerce solutions.";
+    else if(m.includes('contact')) r="Email: info@technova.com  |  Phone: +91 98765 43210";
+    else if(m.includes('location')) r="Our office is in Chennai, Tamil Nadu.";
+    else r="Please ask about our services, projects, contact details or location.";
+    setTimeout(function(){ addMsg(r,'bot'); }, 450);
+  }
+  // Reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+
+<!-- ===== TWEAKS ===== -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const TWEAK_DEFAULTS = {
+  "primary": "#6C4DFF",
+  "accent":  "#FF7A59",
+  "corners": "Rounded",
+  "badge":   "AI-Powered Digital Studio",
+  "lead":    "TechNova builds AI solutions, web & mobile apps, and automation that turn ambitious ideas into measurable results — all from one focused team."
+};
+
+function applyTweaks(t){
+  const r = document.documentElement.style;
+  r.setProperty('--primary', t.primary);
+  r.setProperty('--primary-deep', `color-mix(in srgb, ${t.primary} 78%, #000)`);
+  r.setProperty('--primary-soft', `color-mix(in srgb, ${t.primary} 13%, #fff)`);
+  r.setProperty('--grad', `linear-gradient(135deg, color-mix(in srgb, ${t.primary} 78%, #fff) 0%, ${t.primary} 48%, color-mix(in srgb, ${t.primary} 80%, #000) 100%)`);
+  r.setProperty('--accent', t.accent);
+  const corner = { Rounded:['28px','40px','18px'], Soft:['18px','26px','13px'], Sharp:['8px','12px','6px'] }[t.corners];
+  if(corner){ r.setProperty('--r-lg', corner[0]); r.setProperty('--r-xl', corner[1]); r.setProperty('--r-md', corner[2]); }
+  const b = document.getElementById('heroBadge'); if(b) b.textContent = t.badge;
+  const l = document.getElementById('heroLead'); if(l) l.textContent = t.lead;
+}
+
+function App(){
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(() => { applyTweaks(t); }, [t]);
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Theme" />
+      <TweakColor label="Primary" value={t.primary}
+        options={['#6C4DFF','#2A6FDB','#1F8A5B','#E2553C']}
+        onChange={(v)=>setTweak('primary', v)} />
+      <TweakColor label="Accent" value={t.accent}
+        options={['#FF7A59','#FFB020','#19C37D','#EC4899']}
+        onChange={(v)=>setTweak('accent', v)} />
+      <TweakRadio label="Corners" value={t.corners}
+        options={['Rounded','Soft','Sharp']}
+        onChange={(v)=>setTweak('corners', v)} />
+      <TweakSection label="Hero copy" />
+      <TweakText label="Badge" value={t.badge}
+        onChange={(v)=>setTweak('badge', v)} />
+      <TweakText label="Sub-headline" value={t.lead}
+        onChange={(v)=>setTweak('lead', v)} />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>
