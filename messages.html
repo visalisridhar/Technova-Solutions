@@ -27,16 +27,16 @@
 
 <header class="nav">
   <div class="container nav-inner">
-    <a href="/" class="brand">
+    <a href="index.html" class="brand">
       <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" fill="currentColor" opacity=".25"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       TechNova <span style="font-family:var(--font-body);font-weight:600;font-size:13px;color:var(--primary);background:var(--primary-soft);padding:3px 10px;border-radius:999px;margin-left:4px">Admin</span>
     </a>
     <nav class="nav-links">
-      <a href="/">Home</a>
-      <a href="/admin">Dashboard</a>
-      <a href="/messages" class="active">Messages</a>
+      <a href="index.html">Home</a>
+      <a href="admin.html">Dashboard</a>
+      <a href="messages.html" class="active">Messages</a>
     </nav>
-    <div class="nav-cta"><a href="/logout" class="btn btn-ghost btn-sm">Log out</a></div>
+    <div class="nav-cta"><a href="login.html" class="btn btn-ghost btn-sm">Log out</a></div>
   </div>
 </header>
 
@@ -51,22 +51,30 @@
     </div>
 
     <div class="grid" style="gap:18px;margin-top:34px" id="list">
-      {% for msg in messages %}
-      <div class="card msg-card" data-name="{{ msg.name | lower }}">
-        <div class="av">{{ msg.name[0] | upper }}</div>
+      <div class="card msg-card">
+        <div class="av">A</div>
         <div class="meta">
-          <div class="top">
-            <h3>{{ msg.name }}</h3>
-            <span class="email">{{ msg.email }}</span>
-            {% if msg.subject %}<span style="font-size:13px;color:var(--body);font-weight:500">{{ msg.subject }}</span>{% endif %}
-          </div>
-          <p class="body">{{ msg.message }}</p>
+          <div class="top"><h3>Ananya Rao</h3><span class="email">ananya@meridian.health</span></div>
+          <p class="body">We'd love to discuss building an analytics dashboard for our operations team. When are you free for a call?</p>
         </div>
-        <a href="/delete/{{ msg.id }}" class="del" onclick="return confirm('Delete this message?')">Delete</a>
+        <button class="del" onclick="this.closest('.msg-card').remove()">Delete</button>
       </div>
-      {% else %}
-      <p style="color:var(--body)">No enquiries yet.</p>
-      {% endfor %}
+      <div class="card msg-card">
+        <div class="av">R</div>
+        <div class="meta">
+          <div class="top"><h3>Rohan Mehta</h3><span class="email">rohan@brightschools.in</span></div>
+          <p class="body">Interested in your School ERP platform. Could you share pricing and a demo for a 2,000-student campus?</p>
+        </div>
+        <button class="del" onclick="this.closest('.msg-card').remove()">Delete</button>
+      </div>
+      <div class="card msg-card">
+        <div class="av">S</div>
+        <div class="meta">
+          <div class="top"><h3>Sara Lewis</h3><span class="email">sara@novacart.com</span></div>
+          <p class="body">Our e-commerce store needs an AI recommendation engine. Do you take on integration-only projects?</p>
+        </div>
+        <button class="del" onclick="this.closest('.msg-card').remove()">Delete</button>
+      </div>
     </div>
   </div>
 </section>
@@ -84,7 +92,8 @@
   function filterMsgs(){
     var q=document.getElementById('q').value.toLowerCase();
     document.querySelectorAll('#list .msg-card').forEach(function(c){
-      c.style.display = c.dataset.name.includes(q) ? 'flex' : 'none';
+      var name=c.querySelector('h3').textContent.toLowerCase();
+      c.style.display = name.includes(q) ? 'flex' : 'none';
     });
   }
 </script>
