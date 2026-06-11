@@ -20,16 +20,16 @@
 
 <header class="nav">
   <div class="container nav-inner">
-    <a href="/" class="brand">
+    <a href="index.html" class="brand">
       <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" fill="currentColor" opacity=".25"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       TechNova <span style="font-family:var(--font-body);font-weight:600;font-size:13px;color:var(--primary);background:var(--primary-soft);padding:3px 10px;border-radius:999px;margin-left:4px">Admin</span>
     </a>
     <nav class="nav-links">
-      <a href="/">Home</a>
-      <a href="/admin" class="active">Dashboard</a>
-      <a href="/messages">Messages</a>
+      <a href="index.html">Home</a>
+      <a href="admin.html" class="active">Dashboard</a>
+      <a href="messages.html">Messages</a>
     </nav>
-    <div class="nav-cta"><a href="/logout" class="btn btn-ghost btn-sm">Log out</a></div>
+    <div class="nav-cta"><a href="login.html" class="btn btn-ghost btn-sm">Log out</a></div>
   </div>
 </header>
 
@@ -41,17 +41,17 @@
 
     <div class="grid grid-3 mt-l">
       <div class="card tint-1">
-        <div class="kpi"><div><div class="v">{{ total_messages }}</div><div class="k">Total messages</div><div class="delta"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M3 17l6-6 4 4 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h6v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> +5 this week</div></div>
+        <div class="kpi"><div><div class="v">14</div><div class="k">Total messages</div><div class="delta"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M3 17l6-6 4 4 7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h6v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> +5 this week</div></div>
           <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.4 8.4 0 0 1-12 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
         </div>
       </div>
       <div class="card tint-4">
-        <div class="kpi"><div><div class="v">{{ total_projects }}</div><div class="k">Total projects</div><div class="delta">All live &amp; active</div></div>
+        <div class="kpi"><div><div class="v">3</div><div class="k">Total projects</div><div class="delta">All live &amp; active</div></div>
           <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3 8h18" stroke="currentColor" stroke-width="2"/></svg></div>
         </div>
       </div>
       <div class="card tint-3">
-        <div class="kpi"><div><div class="v">{{ total_services }}</div><div class="k">Total services</div><div class="delta">Listed on site</div></div>
+        <div class="kpi"><div><div class="v">6</div><div class="k">Total services</div><div class="delta">Listed on site</div></div>
           <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M3 12h3m12 0h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="2"/></svg></div>
         </div>
       </div>
@@ -63,7 +63,7 @@
           <h3 style="font-size:21px">Manage customer messages</h3>
           <p style="color:var(--body);margin-top:6px;font-size:15px">View, search and respond to all inquiries submitted through the contact form.</p>
         </div>
-        <a href="/messages" class="btn btn-primary">Open inbox
+        <a href="messages.html" class="btn btn-primary">Open inbox
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
