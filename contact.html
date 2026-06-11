@@ -40,7 +40,10 @@
       <a href="gallery.html">Gallery</a>
       <a href="contact.html" class="active">Contact</a>
     </nav>
-    <div class="nav-cta"><a href="contact.html" class="btn btn-primary btn-sm">Get Started</a></div>
+    <div class="nav-cta">
+      <a href="/login" class="btn btn-ghost btn-sm">Login</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
   </div>
 </header>
 
@@ -78,7 +81,7 @@
     <div class="form-card">
       <h3 style="font-size:23px;margin-bottom:6px">Send us a message</h3>
       <p style="color:var(--body);font-size:15px;margin-bottom:24px">Tell us a little about your project.</p>
-      <form id="contactForm" method="POST" action="/contact">
+      <form id="contactForm" onsubmit="return submitForm(event)">
         <div class="row2">
           <div class="field"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
           <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div>
@@ -118,12 +121,13 @@
 </div>
 
 <script>
-  {% if success %}
-  window.addEventListener('DOMContentLoaded', function(){
+  function submitForm(e){
+    e.preventDefault();
+    document.getElementById('contactForm').reset();
     var t=document.getElementById('toast'); t.style.display='flex';
     setTimeout(function(){ t.style.display='none'; }, 5000);
-  });
-  {% endif %}
+    return false;
+  }
 </script>
 <script src="chatbot.js"></script>
 </body>
